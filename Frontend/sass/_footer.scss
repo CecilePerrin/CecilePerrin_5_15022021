@@ -1,0 +1,48 @@
+footer{
+    background-color: rgb(241, 241, 241);
+    color: $colour-primary;
+    width: 100%;
+    @media (min-width: 64rem){
+    padding: 1rem 2rem;
+    position:relative;
+    bottom: 0;
+ }
+}
+footer ul{
+    list-style: none;
+    padding: 0rem;
+    
+}
+footer li{
+    margin-bottom: 0.5rem;
+    @media(min-width: 64rem){
+        margin: 1rem;
+    }
+}
+footer span{
+    font-size: 15px;
+}
+
+.footer_mail{
+    text-decoration: underline;
+}
+
+.wrap-footer{
+    display: flex;
+    margin: 1rem;
+}
+.column-footer{
+    margin: 1rem;
+    &__tittle{
+        font-weight: bolder;
+    }
+}
+.Reseaux{
+    display: flex;
+    justify-content: center;
+    & span {
+        margin: 1rem;
+        color: $colour-tertiare;
+    }
+
+}
