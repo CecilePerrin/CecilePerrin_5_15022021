@@ -128,9 +128,6 @@
     &__card {
        @include restaurant;
        position: relative;
-       &:hover{
-         box-shadow: .15rem .15rem 10px rgb(223, 179, 215)
-       }
        @media (min-width: 40rem) {
           width: 70%;    
           margin: auto;
@@ -159,7 +156,7 @@
     &__new {
        position: absolute;
        border-radius: 0.3rem;
-       background-color: rgb(201, 106, 245);
+       background-color: $colour-secondary;
        color: white;
        padding: .5rem;
        left: 1.5rem;
@@ -174,5 +171,8 @@
  }
  
  .Imgcard {
+   &:hover{
+      box-shadow: .15rem .15rem 10px rgb(192, 186, 191)
+    }
     @include imagecard;
  }

@@ -96,6 +96,7 @@ footer span {
 }
 
 .btn {
+  justify-content: center;
   font-size: 1rem;
   font-weight: bold;
   padding: 0.8rem;
@@ -103,7 +104,7 @@ footer span {
   color: white;
   position: relative;
   cursor: pointer;
-  background-image: linear-gradient(rgba(201, 106, 245, 0.9), rgba(220, 128, 86, 0.9));
+  background-color: #261624;
 }
 
 .Panier {
@@ -230,9 +231,6 @@ footer span {
   margin: 1.5rem 0 0;
   position: relative;
 }
-.Meubles__card:hover {
-  box-shadow: 0.15rem 0.15rem 10px #dfb3d7;
-}
 @media (min-width: 40rem) {
   .Meubles__card {
     width: 70%;
@@ -259,7 +257,7 @@ footer span {
 .Meubles__new {
   position: absolute;
   border-radius: 0.3rem;
-  background-color: #c96af5;
+  background-color: #9f6fff;
   color: white;
   padding: 0.5rem;
   left: 1.5rem;
@@ -291,6 +289,9 @@ footer span {
   border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
   object-fit: cover;
 }
+.Imgcard:hover {
+  box-shadow: 0.15rem 0.15rem 10px #c0babf;
+}
 
 .Product {
   margin: 1.5rem;
@@ -300,6 +301,7 @@ footer span {
 }
 .Product__img {
   max-width: 100%;
+  border-radius: 10px;
   max-height: 100%;
   height: 20rem;
   width: 30rem;
@@ -309,8 +311,12 @@ footer span {
   margin: 1rem;
   flex-direction: column;
 }
+.Product__price {
+  font-weight: bolder;
+}
 
 .Validation {
+  justify-content: center;
   font-size: 1rem;
   font-weight: bold;
   padding: 0.8rem;
@@ -318,7 +324,42 @@ footer span {
   color: white;
   position: relative;
   cursor: pointer;
-  background-image: linear-gradient(rgba(201, 106, 245, 0.9), rgba(220, 128, 86, 0.9));
+  background-color: #261624;
+  border-radius: 30px;
+  display: flex !important;
+  justify-items: center;
+}
+
+.qty-field {
+  transition: border-color 200ms ease-out, box-shadow 200ms ease-out;
+  -webkit-appearance: none;
+  -ms-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  box-shadow: 0 1px 6px 0 rgba(34, 34, 34, 0.15);
+  font-family: inherit;
+  font-size: 16px;
+  height: 48px;
+  padding-left: 12px;
+  padding-right: 36px;
+  width: 100%;
+  border-radius: 6px;
+  background: #FFFFFF;
+  border-color: rgba(34, 34, 34, 0.15);
+  border-style: solid;
+  border-width: 1px;
+  color: #222222;
+  text-indent: 0.01px;
+  text-overflow: "";
+  cursor: pointer;
+}
+.qty-field:hover {
+  box-shadow: 0 1px 12px 0 rgba(34, 34, 34, 0.2);
+}
+
+.space {
+  margin: 0.5rem;
+  display: block;
 }
 
 /*# sourceMappingURL=style.css.map */

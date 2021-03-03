@@ -5,6 +5,7 @@
     height:600px;
     &__img{
         max-width:100%;
+        border-radius: 10px;
         max-height: 100%;
         height: 20rem;
         width: 30rem;
@@ -14,8 +15,24 @@
         margin: 1rem;
         flex-direction: column;
     }
+    &__price{
+        font-weight: bolder;
+    }
 }
 
 .Validation{
     @include btn;
+    border-radius: 30px;
+    display: flex !important;
+    justify-items:center; 
+
+}
+
+.qty-field{
+   @include select;
+}
+
+.space{
+    margin: 0.5rem;
+    display: block;
 }

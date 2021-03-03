@@ -1,60 +1,81 @@
 <!DOCTYPE html>
 <html lang="fr">
-   <head>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <script src="https://kit.fontawesome.com/0915c80407.js" crossorigin="anonymous"></script>
-      <title>Orinoco</title>
-      <link rel= "stylesheet"  href="/Frontend/css/style.css">
-   </head>
-   <body>
-      <main class="page-container">
-         <header>
-            <div class="header-accueil">  
-               <nav class= "Navigation">
-                  <span>Sign in</span>
-                  <span class="btn">Sign up</span>
-               </nav>
-               <h1>Orinoco</h1>
-         </div>
-         </header>
-         <section class="Presentation">
-            <div class="Wraplogo"><img class="logo" src="/images/15675819263013_image1.png" alt="logo Orinoco"></div>
-            <h1 class="Presentation__title">Découvrez les nouveautés dont vous ne pourrez plus vous passer</h1>
-            <p class="Presentation__text">Orinoco est l'une des première destination pour trouver ce dont vous avez besoin. Une envie? Orinoco vous le fournira</p>
-         </section> 
-         <section class="Catégories">
-            <div class="Catégories__selection"><span>all</span></div>
-            <div class="Catégories__selection"><span>Orinours</span></div>
-            <div class="Catégories__selection"><span>Orikit</span></div>
-            <div class="Catégories__selection"><span>Oricam</span></div>
-         </section>
-         <div class="Product">
-            <div class="Product__gallery">
-               <img class="Product__img" src="/images/oak_1.jpg">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://kit.fontawesome.com/0915c80407.js" crossorigin="anonymous"></script>
+        <title>Orinoco</title>
+        <link rel= "stylesheet"  href="/Frontend/css/style.css">
+        <script src="./js/cart.js" defer></script>
+        <script src="./js/products.js" defer></script>
+       
+        
+    </head>
+    <body>
+        <main class="page-container">
+            <header>
+                <div class="header-accueil">
+                    <nav class= "Navigation">
+                        <span>Sign in</span>
+                        <span class="btn">Sign up</span>
+                    </nav>
+                    <h1>Orinoco</h1>
+                </div>
+            </header>
+            <section class="Presentation">
+                <div class="Wraplogo"><img class="logo" src="/images/15675819263013_image1.png" alt="logo Orinoco"></div>
+                <h1 class="Presentation__title">Découvrez les nouveautés dont vous ne pourrez plus vous passer</h1>
+                <p class="Presentation__text">Orinoco est l'une des première destination pour trouver ce dont vous avez besoin. Une envie? Orinoco vous le fournira</p>
+            </section>
+            <section class="Catégories">
+                <div class="Catégories__selection"><span>all</span></div>
+                <div class="Catégories__selection"><span>Orinours</span></div>
+                <div class="Catégories__selection"><span>Orikit</span></div>
+                <div class="Catégories__selection"><span>Oricam</span></div>
+            </section>
+            <div class="Panier" id="Cart">
+                <div class="Panier__count">1</div>
+                <i class="fas fa-shopping-cart"></i>
             </div>
-            <div class="Product__details-sidebar">
-               <h2>Tabouret</h2>
-               <span></span>
-               <div class="Product__price">30€</div>
-               <div class="Product__Qty"> 
-                  <label for="">Quantité</label>
-                  <select id="qty-field" type="number" name="qty" maxlength="10" min="1" >
-               </div>
-               <div class="">
-                  <label>Choisissez votre vernis:
-                     <select class="" name="vernis">
-                       <option value="">Select One …</option>
-                       <option value="Brun">Brun</option>
-                       <option value="marron clair">Marron clair</option>
-                       <option value="blanc">Blanc</option>
-                     </select>
-                   </label>  
-               </div>
-               <div class="Validation">
-                  <span class="Ajout">Ajouter au panier</span>
-               </div>
+            <div class="Product" id="Product">
+                <template id="templateProduct">
+                    <div class="Product__leftside">
+                        <img class="Product__img" id="Product__img" src="">
+                        <div class="Product__description" id="Product__description"></div>
+                    </div>
+                    <div class="Product__details-sidebar">
+                        <h2 class="Product__name" id="Product__name"></h2>
+                        <span></span>
+                        <div class="Product__price space" id="Product__price"></div>
+                        <div class="Product__Qty space">
+                            <label class="space" for="">Quantité</label>
+                            <select class="qty-field" type="number" name="qty" maxlength="10" min="1" >
+                                <option value="1" selected>1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="4">5</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                            </select>
+                        </div>
+                        <div class="choose space">
+                            <label class="space">Choisissez votre vernis:</label>  
+                            <select class="qty-field" name="vernis">
+                                <option value="">Select One …</option>
+                                <option value="Brun">Brun</option>
+                                <option value="marron clair">Marron clair</option>
+                                <option value="blanc">Blanc</option>
+                            </select>
+                        </div>
+                        <div class="Validation space">
+                            <span class="Ajout" id="Ajout">Ajouter au panier</span>
+                        </div>
+                    </div>
+                </template>
             </div>
-         </div>
          <footer>
             <h1>Orinoco</h1>
             <div class="wrap-footer">
@@ -78,6 +99,7 @@
                   <li>Mentions Légales</li>
                </ul>
             </div>
+         </template>
             <div class="Reseaux">
                <a class="social" href="index.html" aria-label="twitter"><span class="fa fa-twitter fa-2x "></span></a>
                <a class="social" href="index.html" aria-label="facebook"><span class="fa fa-facebook fa-2x "></span></a>
