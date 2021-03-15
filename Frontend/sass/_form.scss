@@ -1,0 +1,52 @@
+.formulaire{
+	background-color: rgb(238, 238, 238);
+	border-radius: 15px;
+	color: #555555;
+	border: solid 0.5px rgb(218, 203, 215);
+	padding: 1rem;
+	margin: 5rem 1rem 5rem 1rem;
+	max-width: 30rem;
+	@media (min-width: 40rem) {
+        width: 30rem; 
+		margin: auto;
+		margin-bottom:8rem;
+		margin-top: 5rem;
+     }
+	  @media (min-width: 95rem) {
+        width: 30rem; 
+		margin: auto;
+		margin-bottom:8rem;
+     }
+	
+    & label{
+        font-weight: bold;
+        font-size: 17px;
+    }
+    & input,textarea{
+        width: 100%;
+        font-size: 13px;
+    }
+    & button{
+    max-width: 150px;
+	
+    }
+}
+
+.form-input {
+	border: 1px solid $colour-random;
+	border-radius: 5px;
+	box-shadow:  0 0.2em 0.2em rgba(50, 50, 50, 0.3);
+	box-sizing: border-box;
+	margin-bottom: 30px;
+	margin-top: 10px;
+	min-height: 40px;
+	padding: 6px 12px;
+	transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+	white-space: normal;
+}
+
+.form-input:focus {
+	border-color:$colour-secondary;
+	outline: 0;
+	box-shadow: inset 0 1px 1px rgba(54, 54, 54, 0.075), 0 0 8px rgba(253, 61, 179, 0.6);
+}

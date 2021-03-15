@@ -58,7 +58,16 @@
    }
 }
 
-
+.burgernav{
+   display: block;
+   color: $colour-primary;
+   position: absolute;
+   right: 2rem;
+   top: 1rem;
+   @media (min-width: 64rem) {
+      display: none;
+   }
+}
 .Navigation{
    display: none;
    @media (min-width: 64rem) {

@@ -79,8 +79,3 @@ function hydratePage(produits){
 
 
 
-
-
-/*quand clique ajouter produit dans le panier et augmenter le chiffre sur le panier */
-// const btn = document.getElementById("button")
-

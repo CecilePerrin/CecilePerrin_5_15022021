@@ -3,6 +3,8 @@
    <head>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <script src="https://kit.fontawesome.com/0915c80407.js" crossorigin="anonymous"></script>
+      <script src="./js/products.js" defer ></script>
+      <script src="./js/cart.js" defer ></script>
       <title>Orinoco</title>
       <link rel= "stylesheet"  href="/Frontend/css/style.css">
    </head>
@@ -14,6 +16,9 @@
                   <span>Sign in</span>
                   <span class="btn">Sign up</span>
                </nav>
+               <div class="burgernav">
+               <i class="fas fa-bars fa-2x"></i>
+               </div>
                <h1>Orinoco</h1>
          </div>
          </header>
@@ -22,18 +27,76 @@
             <h1 class="Presentation__title">Découvrez les nouveautés dont vous ne pourrez plus vous passer</h1>
             <p class="Presentation__text">Orinoco est l'une des première destination pour trouver ce dont vous avez besoin. Une envie? Orinoco vous le fournira</p>
          </section> 
-         <section class="panier">
-            
-         </section>
-         <section class="Catégories">
-            <div class="Catégories__selection"><span>all</span></div>
-            <div class="Catégories__selection"><span>Orinours</span></div>
-            <div class="Catégories__selection"><span>Orikit</span></div>
-            <div class="Catégories__selection"><span>Oricam</span></div>
-         </section>
-       
-
-         </div>
+      </section>
+      <section class="Catégories">
+         <div class="Catégories__selection"><span>all</span></div>
+         <div class="Catégories__selection"><span>Orinours</span></div>
+         <div class="Catégories__selection"><span>Orikit</span></div>
+         <div class="Catégories__selection"><span>Oricam</span></div>
+      </section>
+      <section class="Shopping-cart">
+            <div class="checkout">
+               <div class="checkout__box"><h2>Récapitulatif panier</h2></div>
+               <div class="checkout__products">
+                  <div class="checkout__empty">
+                     <template id="template-empty">
+                     <span>Votre panier est vide</span></template>
+                  </div>
+                  <template id="template-panier">
+                     <div class="wraping-product">
+                        <div class="wraping-product__wrapimg" id="wrapimg"><img class="Imgcard"src="/images/oak_1.jpg" alt=""></div>
+                        <div class="wraping-product__name" id="name"><span class="">nom du produit</span></div>
+                        <div class="wraping-product__quantity" id="Quantity">
+                        <div class="wraping-product__price" id="price"><span class="">55€</span></div>
+                        <div class="wraping-product__disabled" id="disabler"><i class="fas fa-times"></i></div>
+                     </div>
+                  </template>     
+               </div>
+               <div class="totalprice">
+                  <span>Total: </span>
+                  <span id="total"> </span>
+               </div>
+            </div>
+            <div class="formulaire">
+               <form id="form" novalidate >
+                  <div class="form-group">
+                     <label for="Prénom">
+                     Prénom
+                     </label>
+                     <input id="surname" class="form-input"  placeholder="Votre Prénom" required />
+                  </div>
+                  <div class="form-group">
+                      <label for="name">
+                      Nom
+                      </label>
+                      <input id="name"  class="form-input" placeholder="Veuillez indiquer votre Nom" required />
+                  </div>
+                  <div class="form-group">
+                      <label for="email">
+                      Email
+                      </label>
+                      <input id="email" class="form-input" type="email" placeholder="Indiquez votre Email ici" required />
+                  </div>
+                  <div class="form-group">
+                     <label for="Adresse">
+                     Adresse
+                     </label>
+                     <input id="adress" class="form-input"  placeholder="indiquez votre adresse ici" required />
+                 </div>
+                  <div class="form-group">
+                     <label for="Ville">
+                     Ville
+                     </label>
+                     <input id="city" class="form-input"  placeholder="Votre ville" required />
+                  </div>
+                  
+                  
+                  <button class="bouttonachat" type="submit">
+                  Confirmez
+                  </button>
+              </form>
+            </div>
+      </section>
          <footer>
             <h1>Orinoco</h1>
             <div class="wrap-footer">

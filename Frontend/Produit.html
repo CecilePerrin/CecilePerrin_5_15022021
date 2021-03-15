@@ -5,7 +5,6 @@
         <script src="https://kit.fontawesome.com/0915c80407.js" crossorigin="anonymous"></script>
         <title>Orinoco</title>
         <link rel= "stylesheet"  href="/Frontend/css/style.css">
-        <script src="./js/cart.js" defer></script>
         <script src="./js/products.js" defer></script>
        
         
@@ -18,6 +17,9 @@
                         <span>Sign in</span>
                         <span class="btn">Sign up</span>
                     </nav>
+                    <div class="burgernav">
+                        <i class="fas fa-bars fa-2x"></i>
+                    </div>
                     <h1>Orinoco</h1>
                 </div>
             </header>
@@ -32,10 +34,10 @@
                 <div class="Catégories__selection"><span>Orikit</span></div>
                 <div class="Catégories__selection"><span>Oricam</span></div>
             </section>
-            <div class="Panier" id="Cart">
-                <div class="Panier__count">1</div>
+            <a href="/Frontend/Panier.html" class="Panier" id="Cart">
+                <div class="Panier__count"><span id="count">0</span></div>
                 <i class="fas fa-shopping-cart"></i>
-            </div>
+            </a>
             <div class="Product" id="Product">
                 <template id="templateProduct">
                     <div class="Product__leftside">
@@ -64,14 +66,14 @@
                         <div class="choose space">
                             <label class="space">Choisissez votre vernis:</label>  
                             <select class="qty-field" name="vernis">
-                                <option value="">Select One …</option>
-                                <option value="Brun">Brun</option>
-                                <option value="marron clair">Marron clair</option>
-                                <option value="blanc">Blanc</option>
+                                <option class ="product__varnish" value="0"></option>
+                                <option class ="product__varnish" value="1"></option>
+                                <option class ="product__varnish" value="2"></option>
+                                <option class ="product__varnish" value="3"></option>
                             </select>
                         </div>
-                        <div class="Validation space">
-                            <span class="Ajout" id="Ajout">Ajouter au panier</span>
+                        <div id="add" class="Validation space">
+                           <span>Ajouter au panier</span>
                         </div>
                     </div>
                 </template>

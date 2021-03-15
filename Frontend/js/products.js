@@ -4,7 +4,7 @@
   const id =  getId();
   const dataFurniture = await getData(id);
   displayProduct(dataFurniture);
-  
+  onLoadCartNumbers()
 })()
 
 
@@ -13,7 +13,6 @@ function getId() {
   let url = new URL(window.location.href);
   let id = url.searchParams.get('id');
   return id;
-
 }
 
 function  getData(id) {
@@ -41,22 +40,64 @@ function displayProduct(detailsProduct){
     cloneTemplate.getElementById("Product__description").innerHTML = detailsProduct.description;
     cloneTemplate.getElementById("Product__name").innerHTML = detailsProduct.name;
     cloneTemplate.getElementById("Product__price").innerHTML = detailsProduct.price /100 + "€";
-
+    // let vernis = document.getElementsByClassName('product__varnish');
+    // vernis.innerHTML = `repeat(${detailsProduct.varnish.length})`;
     document.getElementById("Product").appendChild(cloneTemplate);
+  
+//-----------------------------------PANIER---------------------------------------//
+
+const panier = JSON.parse(localStorage.getItem("panier"));
+console.log(panier)
+
+  //display number
+function cartNumbers() {
+    let productNumbers = localStorage.getItem('cartNumbers');
+
+    productNumbers= parseInt (productNumbers);
+
+    if (productNumbers){
+      localStorage.setItem('cartNumbers', productNumbers + 1);
+      document.getElementById("count").textContent = productNumbers + 1;
+    }
+      else{
+        localStorage.setItem('cartNumbers',1);
+        document.getElementById("count").textContent = 1;
+      }
+   
+  }
+//Vérification et initialisation du panier
+
+if (localStorage.getItem("panier")) {
+  console.log(panier);
+} else {
+  console.log("Le panier va être initalisé");
+  let panierInit = [];
+  localStorage.setItem("panier", JSON.stringify(panierInit));
+}
+  
+  //Add to cart
+
+let acheter = document.getElementById("add");
+  acheter.addEventListener("click", async function (event) {
+    event.preventDefault()
+    let url = new URL(window.location.href);
+    let id = url.searchParams.get('id')
+    const pushElt = await getData(id);
+    panier.push(pushElt);
+    localStorage.setItem("panier", JSON.stringify(panier));
+    alert("added to cart");
+    cartNumbers();
+  });
+ 
 }
   
 
-saveCart(['blabla','lol' ]);
 
-// function diplayCart(productCart){
-//   const btnAdd = document.getElementById ("Ajouter");
-//   btnAdd.addEventListener("click",fonction()){
-    
+function onLoadCartNumbers(){
+  let productNumbers = localStorage.getItem('cartNumbers');
 
-//   }
-  //pour chaque produits selectionnés on l'affichera sur une page panier qui sera pour l'instant cachée
-
-//}
-
-
+    if(productNumbers){
+      document.getElementById("count").textContent = productNumbers;
+  }
+}
 

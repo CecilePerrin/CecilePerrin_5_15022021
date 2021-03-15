@@ -1,0 +1,84 @@
+.Shopping-cart{
+    display: block;
+    
+    @media (min-width: 95rem) {
+        display: flex ;
+       
+     }
+}
+
+
+.checkout{
+    margin: 0.5rem;
+    width: 100%;
+    margin-top: 1.5rem;
+    @media (min-width: 95rem) {
+       width: 50%;
+       margin: 3rem;
+     }
+    &__box{
+        border-bottom: $colour-random solid 2px;
+    }
+    &__products{
+        margin: auto;
+        margin-top: 2rem;
+        border-bottom: $colour-random solid 2px;
+  }
+    &__empty{
+        margin: 5rem;
+        color: rgb(155, 155, 155);
+}
+}
+img {
+    @include imagecard;
+  }
+
+.wraping-product{
+    display: flex;
+    position: relative;
+    width: 80%;
+    margin: 0.5rem;
+    @media (min-width: 95rem) {
+        margin: 2rem;
+    }
+    &__wrapimg{
+        width: 4rem;
+    }
+    &__name{
+        margin-left: 0.5rem;
+    }
+    &__price{  
+        font-weight: bold;
+        position: absolute;
+        right: 2.5rem;
+       
+    }
+    &__disabled{
+        position: absolute;
+        right: 0rem;
+    }
+
+}
+.totalprice{
+    display: flex;
+    justify-content: flex-end;
+    margin-right:10rem;
+    margin-top: 1.5rem;
+}
+.bouttonachat{
+    background-color:$colour-primary;
+    color:white;
+    margin: 0rem 5rem 0rem 5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    border-radius: 40px;
+    font-size: 13px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-bottom-color: rgba(0, 0, 0, 0.1);
+    text-shadow: 0 1px 0 rgba(0, 0, 1, 0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 1, 0.25), inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
+    padding: 12px 28px 12px 28px;
+    &:active{
+       background-color: rgb(71, 40, 69);
+    }
+}

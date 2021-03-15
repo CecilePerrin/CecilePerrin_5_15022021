@@ -2,7 +2,7 @@
     margin: 1.5rem;
     display: flex;
     justify-content: center;
-    height:600px;
+    height:750px;
     &__img{
         max-width:100%;
         border-radius: 10px;
@@ -10,6 +10,7 @@
         height: 20rem;
         width: 30rem;
     }
+   
     &__details-sidebar{
         display: flex;
         margin: 1rem;
@@ -35,4 +36,7 @@
 .space{
     margin: 0.5rem;
     display: block;
+}
+.Product__leftside{
+    width: 30rem;
 }
