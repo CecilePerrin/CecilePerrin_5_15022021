@@ -1,13 +1,18 @@
 
+function saveCart(cart) {
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
 
-(async function main() {
-  const id =  getId();
-  const dataFurniture = await getData(id);
-  displayProduct(dataFurniture);
-  onLoadCartNumbers()
-})()
-
-
+function getCart() {
+  let cart = JSON.parse(localStorage.getItem("cart"));
+  console.log(cart)
+  if (!cart) {
+    cart = [];
+    saveCart(cart);
+  }
+  return cart
+  
+}
 
 function getId() {
   let url = new URL(window.location.href);
@@ -27,77 +32,48 @@ function  getData(id) {
     request.open("GET", `http://localhost:3000/api/furniture/${id}`)
     request.send();
   });
-};
-
-
-function displayProduct(detailsProduct){
-    
-    const templateProduct = document.getElementById("templateProduct");
-    
-    const cloneTemplate = document.importNode(templateProduct.content, true);
-
-    cloneTemplate.getElementById("Product__img").setAttribute("src",detailsProduct.imageUrl);
-    cloneTemplate.getElementById("Product__description").innerHTML = detailsProduct.description;
-    cloneTemplate.getElementById("Product__name").innerHTML = detailsProduct.name;
-    cloneTemplate.getElementById("Product__price").innerHTML = detailsProduct.price /100 + "€";
-    // let vernis = document.getElementsByClassName('product__varnish');
-    // vernis.innerHTML = `repeat(${detailsProduct.varnish.length})`;
-    document.getElementById("Product").appendChild(cloneTemplate);
-  
-//-----------------------------------PANIER---------------------------------------//
-
-const panier = JSON.parse(localStorage.getItem("panier"));
-console.log(panier)
-
-  //display number
-function cartNumbers() {
-    let productNumbers = localStorage.getItem('cartNumbers');
-
-    productNumbers= parseInt (productNumbers);
-
-    if (productNumbers){
-      localStorage.setItem('cartNumbers', productNumbers + 1);
-      document.getElementById("count").textContent = productNumbers + 1;
-    }
-      else{
-        localStorage.setItem('cartNumbers',1);
-        document.getElementById("count").textContent = 1;
-      }
-   
-  }
-//Vérification et initialisation du panier
-
-if (localStorage.getItem("panier")) {
-  console.log(panier);
-} else {
-  console.log("Le panier va être initalisé");
-  let panierInit = [];
-  localStorage.setItem("panier", JSON.stringify(panierInit));
 }
-  
-  //Add to cart
 
-let acheter = document.getElementById("add");
-  acheter.addEventListener("click", async function (event) {
-    event.preventDefault()
-    let url = new URL(window.location.href);
-    let id = url.searchParams.get('id')
-    const pushElt = await getData(id);
-    panier.push(pushElt);
-    localStorage.setItem("panier", JSON.stringify(panier));
+function displayProduct(dataFurniture){
+  const templateProduct = document.getElementById("templateProduct");
+  console.log(dataFurniture.varnish)
+  const cloneTemplate = document.importNode(templateProduct.content, true);
+  cloneTemplate.getElementById("Product__img").setAttribute("src",dataFurniture.imageUrl);
+  cloneTemplate.getElementById("Product__description").innerHTML = dataFurniture.description;
+  cloneTemplate.getElementById("Product__name").innerHTML = dataFurniture.name;
+  cloneTemplate.getElementById("Product__price").innerHTML = dataFurniture.price /100 + "€";
+  let selectVarnish = cloneTemplate.getElementById('product__varnish');
+   dataFurniture.varnish.forEach(varnish => addVarnishOption(varnish, selectVarnish))
+  document.getElementById("Product").appendChild(cloneTemplate);
+}
+
+function addVarnishOption(varnish, selectVarnish){
+  let option =  document.createElement("option");
+  option.value = varnish;
+  option.innerHTML = varnish;
+  selectVarnish.appendChild(option);
+}
+
+
+function addListenerOnButton(cart, dataFurniture){
+  let button = document.getElementById("add");
+  button.addEventListener("click", function () {
+    cart.push(dataFurniture);
+    saveCart(cart);
     alert("added to cart");
-    cartNumbers();
+    diplayCartNumbers(cart);
   });
- 
-}
-  
-
-
-function onLoadCartNumbers(){
-  let productNumbers = localStorage.getItem('cartNumbers');
-
-    if(productNumbers){
-      document.getElementById("count").textContent = productNumbers;
-  }
 }
 
+function diplayCartNumbers(cart) {
+  document.getElementById("count").textContent = cart.length;
+}
+
+(async function main() {
+  const id =  getId();
+  const dataFurniture = await getData(id);
+  cart = getCart();
+  displayProduct(dataFurniture);
+  addListenerOnButton(cart, dataFurniture);
+  diplayCartNumbers(cart);
+})()

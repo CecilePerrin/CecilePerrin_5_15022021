@@ -21,7 +21,7 @@
     }
     &__products{
         margin: auto;
-        margin-top: 2rem;
+        padding-bottom: 5rem;
         border-bottom: $colour-random solid 2px;
   }
     &__empty{
@@ -82,3 +82,4 @@ img {
        background-color: rgb(71, 40, 69);
     }
 }
+

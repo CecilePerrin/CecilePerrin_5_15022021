@@ -3,7 +3,7 @@
    <head>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <script src="https://kit.fontawesome.com/0915c80407.js" crossorigin="anonymous"></script>
-      <script src="./js/products.js" defer ></script>
+      <!-- <script src="./js/products.js" defer ></script>  -->
       <script src="./js/cart.js" defer ></script>
       <title>Orinoco</title>
       <link rel= "stylesheet"  href="/Frontend/css/style.css">
@@ -37,25 +37,29 @@
       <section class="Shopping-cart">
             <div class="checkout">
                <div class="checkout__box"><h2>Récapitulatif panier</h2></div>
-               <div class="checkout__products">
+               <div class="checkout__products" id="checkout__products">
                   <div class="checkout__empty">
                      <template id="template-empty">
                      <span>Votre panier est vide</span></template>
                   </div>
                   <template id="template-panier">
-                     <div class="wraping-product">
-                        <div class="wraping-product__wrapimg" id="wrapimg"><img class="Imgcard"src="/images/oak_1.jpg" alt=""></div>
-                        <div class="wraping-product__name" id="name"><span class="">nom du produit</span></div>
-                        <div class="wraping-product__quantity" id="Quantity">
-                        <div class="wraping-product__price" id="price"><span class="">55€</span></div>
-                        <div class="wraping-product__disabled" id="disabler"><i class="fas fa-times"></i></div>
+                     <div class="wraping-product" id="wraping-product">
+                        <div class="wraping-product__wrapimg"><img id="wrapimg" class="Imgcard"src="" alt=""></div>
+                        <div class="wraping-product__name" id="name"><span>nom du produit</span></div>
+                        <div class="wraping-product__quantity" id="Quantity"><span></span></div>
+                        <div class="wraping-product__price" id="price"><span class=""></span></div>
+                        <div class="wraping-product__disabled"><i id="disabled" class="fas fa-times"></i></div>
                      </div>
                   </template>     
                </div>
                <div class="totalprice">
-                  <span>Total: </span>
-                  <span id="total"> </span>
+                  <span classe="space"id="totalqty"></span>
+                  <span classe="space">Total: </span>
+                  <span classe="space"id="total">0€</span>
                </div>
+               <button class="bouttonachat" id="clearAll">
+                  Videz votre panier
+                  </button>
             </div>
             <div class="formulaire">
                <form id="form" novalidate >

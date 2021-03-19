@@ -459,7 +459,7 @@ footer span {
 }
 .checkout__products {
   margin: auto;
-  margin-top: 2rem;
+  padding-bottom: 5rem;
   border-bottom: #F3E9F1 solid 2px;
 }
 .checkout__empty {
