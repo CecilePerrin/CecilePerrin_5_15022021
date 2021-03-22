@@ -1,29 +1,32 @@
 ;
 (async () => {
-    const ProductInStorage = await getProductInStorage();
-    if (ProductInStorage == null || ProductInStorage.length == 0) {
-        return displayEmptyCart();
-    } else {
-        hydratePage(ProductInStorage);
-        totalPrice(ProductInStorage);
-        NumberOfFurniture(ProductInStorage);
-        removeProduct(ProductInStorage)
-    }
+    let cart = await getCart()
+    displayCart(cart);
+    addEventListenerToTarget(cart);
+    addListenerOnRemoveButton();       
 })()
 
-function getProductInStorage() {
-    return JSON.parse(localStorage.getItem('cart'))
+//-----------------------------//
+function displayCart(cart) {
+    let cartContent = document.getElementById("checkout__products");
+    for (let i = 0; i < cartContent.childNodes.length; i++){
+        if(cartContent.childNodes[i].className == "wraping-product"){
+            cartContent.removeChild(cartContent.childNodes[i]);
+        }    
+    }
+    if (0 == cart.length){
+        displayEmptyCart();
+    }
+    else{
+        cart.forEach((product) => {
+            displayProduct(product);
+        })    
+    }
+    diplayTotalPrice(cart);
+    displayNumberOfProductCart(cart);
 }
 
-function hydratePage(ProductInStorage) {
-    ProductInStorage.forEach((product) => {
-        displayProduct(product)
-        // sameProduct(product)
-    })
-}
-
-
-//--template quand il n'y a pas de produit--//
+//---------------Template empty cart--------------//
 function displayEmptyCart() {
 
     const templateEmpty = document.getElementById("template-empty")
@@ -34,7 +37,7 @@ function displayEmptyCart() {
 }
 
 
-//--template des produits--//
+//--------------template products--------------//
 
 function displayProduct(product) {
 
@@ -45,47 +48,118 @@ function displayProduct(product) {
     clone.getElementById("wrapimg").setAttribute("src", product.imageUrl);
     clone.getElementById("name").innerHTML = product.name;
     clone.getElementById("price").innerHTML = product.price / 100 + "€";
-    // clone.getElementById("Quantity").innerHTML= product.length;
-    document.getElementById("checkout__products").appendChild(clone);
-}
-// let cart = JSON.parse(localStorage.getItem('cart'))
-// console.log(cart)
-// let cartItems = cart.map( item => item)
-// console.log(cartItems)
-function removeProduct(cartItems){
-    cartItems.forEach((cartItems)=>{
-    let removeButton = document.getElementById("disabled");
-    removeButton.addEventListener("click", function ()  {
-        removeItem(cartItems);
-    })
-});
-
-    removeItem = (cartItems) => {
-         cart.splice(cartItems, 1);
-         localStorage.clear();
-         localStorage.setItem("panier", JSON.stringify(cartItems));
-         window.location.reload();
-       
-     };  
-
+    clone.getElementById("disabled").setAttribute("data-id", product._id);
+    document.getElementById("checkout__products").appendChild(clone); 
 }
 
-function totalPrice(ProductInStorage) {
-    let priceOfEach = 0;
-    ProductInStorage.forEach((ProductInStorage) => {
-        priceOfEach += ProductInStorage.price / 100;
-        document.getElementById("total").textContent = priceOfEach + " €";
-        console.log(ProductInStorage);
+
+//--------------Remove item--------------//
+function addEventListenerToTarget(cart){
+    const cartContent = document.getElementById("checkout__products");
+
+    cartContent.addEventListener("click", event =>{
+        if (event.target.classList.contains("disabled")){
+            removeThisProduct (event.target.dataset.id, cart)
+        }
     })
 }
 
-// function sameProduct(product){
 
-// }
+function removeThisProduct(id, cart) {
+    for (let i = 0; i < cart.length; i++){
+        if(cart[i]._id === id){
+            cart.splice(i, 1);
+            break;
+        }
+    }
+    
+    saveCart(cart);
+    displayCart(cart);
+}  
 
 
+//--------------clear cart -------------- //
 
-function NumberOfFurniture(cart) {
+function addListenerOnRemoveButton(){    
+    let removeButton = document.getElementById("clearAll");
+    removeButton.addEventListener("click", function ()  {  
+        saveCart([]); 
+        displayCart([]);
+    });
+}  
+
+
+//--------------Total price && qty--------------//
+
+function diplayTotalPrice(cart) {
+    let sum = 0;
+    cart.forEach((product) => {
+        sum += product.price / 100;
+    })
+    document.getElementById("total").textContent = sum + " €";
+}
+
+
+function displayNumberOfProductCart(cart) {
     document.getElementById("totalqty").textContent = cart.length
 }
 
+//---------------purchase button--------------//
+
+function purchaseOrder(){
+    document.getElementById('purchase').onclick = (e) =>{
+        e.preventDefault()
+        sendPurchase()
+        displayCart([])
+    }
+}
+
+
+function sendPurchase(){
+
+    const firstname = document.getElementById('firstname').value;
+    const lastname = document.getElementById('lastname').value;
+    const address = document.getElementById('adress').value;
+    const city = document.getElementById('city').value;
+    const email = document.getElementById('email').value;
+
+    let products = getCart()
+
+    if (products.length === 0){
+        alert("votre panier est vide")
+        }else{
+            products.forEach(() => {
+                contact = {
+                    utilisateur: {
+                    firstName: firstname,
+                    lastName : lastname,
+                    address: address,
+                    city: city,
+                    email: email,
+                    } 
+                }
+            })  
+        }
+}
+
+//Ajout vérification après récup valeurs du form
+
+//Effets en fonctions de vérification
+//Envoie à l'API
+function sendData (){
+    return new Promise((resolve) => {
+      let request = new XMLHttpRequest();
+      request.onload = function () {
+        if (
+          this.readyState == XMLHttpRequest.DONE &&
+          this.status == 201) {
+          sessionStorage.setItem("order", this.responseText);
+          window.location ="./Frontend/Confirmation.html"
+          resolve(JSON.parse(this.responseText));
+        } 
+      };
+      request.open("POST", "http://localhost:3000/api/furniture/order");
+      request.setRequestHeader("Content-Type", "application/json");
+      request.send();
+    });  
+};

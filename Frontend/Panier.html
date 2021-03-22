@@ -4,6 +4,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <script src="https://kit.fontawesome.com/0915c80407.js" crossorigin="anonymous"></script>
       <!-- <script src="./js/products.js" defer ></script>  -->
+      <script src="./js/librairie.js" defer ></script>
       <script src="./js/cart.js" defer ></script>
       <title>Orinoco</title>
       <link rel= "stylesheet"  href="/Frontend/css/style.css">
@@ -43,12 +44,12 @@
                      <span>Votre panier est vide</span></template>
                   </div>
                   <template id="template-panier">
-                     <div class="wraping-product" id="wraping-product">
+                     <div class="wraping-product">
                         <div class="wraping-product__wrapimg"><img id="wrapimg" class="Imgcard"src="" alt=""></div>
-                        <div class="wraping-product__name" id="name"><span>nom du produit</span></div>
+                        <div class="wraping-product__name"  id="name"><span></span></div>
                         <div class="wraping-product__quantity" id="Quantity"><span></span></div>
                         <div class="wraping-product__price" id="price"><span class=""></span></div>
-                        <div class="wraping-product__disabled"><i id="disabled" class="fas fa-times"></i></div>
+                        <div class="wraping-product__disabled"><i id="disabled" class=" disabled fas fa-times"></i></div>
                      </div>
                   </template>     
                </div>
@@ -64,16 +65,16 @@
             <div class="formulaire">
                <form id="form" novalidate >
                   <div class="form-group">
-                     <label for="Prénom">
+                     <label for="firstname">
                      Prénom
                      </label>
-                     <input id="surname" class="form-input"  placeholder="Votre Prénom" required />
+                     <input id="firstname" class="form-input"  placeholder="Votre Prénom" required />
                   </div>
                   <div class="form-group">
-                      <label for="name">
+                      <label for="lastname">
                       Nom
                       </label>
-                      <input id="name"  class="form-input" placeholder="Veuillez indiquer votre Nom" required />
+                      <input id="lastname"  class="form-input" placeholder="Veuillez indiquer votre Nom" required />
                   </div>
                   <div class="form-group">
                       <label for="email">
@@ -82,20 +83,20 @@
                       <input id="email" class="form-input" type="email" placeholder="Indiquez votre Email ici" required />
                   </div>
                   <div class="form-group">
-                     <label for="Adresse">
+                     <label for="adress">
                      Adresse
                      </label>
                      <input id="adress" class="form-input"  placeholder="indiquez votre adresse ici" required />
                  </div>
                   <div class="form-group">
-                     <label for="Ville">
+                     <label for="city">
                      Ville
                      </label>
                      <input id="city" class="form-input"  placeholder="Votre ville" required />
                   </div>
                   
                   
-                  <button class="bouttonachat" type="submit">
+                  <button class="bouttonachat" id="purchase" type="submit">
                   Confirmez
                   </button>
               </form>

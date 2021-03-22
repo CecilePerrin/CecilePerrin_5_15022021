@@ -62,6 +62,7 @@ function addListenerOnButton(cart, dataFurniture){
     saveCart(cart);
     alert("added to cart");
     diplayCartNumbers(cart);
+    location.reload();
   });
 }
 

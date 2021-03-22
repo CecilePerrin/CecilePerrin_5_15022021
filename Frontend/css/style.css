@@ -499,6 +499,7 @@ img {
 .wraping-product__disabled {
   position: absolute;
   right: 0rem;
+  cursor: pointer;
 }
 
 .totalprice {
@@ -521,9 +522,10 @@ img {
   text-shadow: 0 1px 0 rgba(0, 0, 1, 0.1);
   box-shadow: 0 1px 3px rgba(0, 0, 1, 0.25), inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
   padding: 12px 28px 12px 28px;
+  cursor: pointer;
 }
 .bouttonachat:active {
-  background-color: #472845;
+  background-color: #794b76;
 }
 
 /*# sourceMappingURL=style.css.map */
