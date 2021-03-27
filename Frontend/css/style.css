@@ -35,12 +35,11 @@ footer {
   background-color: #f1f1f1;
   color: #261624;
   width: 100%;
+  padding: 0.5rem;
 }
 @media (min-width: 64rem) {
   footer {
     padding: 1rem 2rem;
-    position: relative;
-    bottom: 0;
   }
 }
 
@@ -424,7 +423,6 @@ footer span {
   margin-top: 10px;
   min-height: 40px;
   padding: 6px 12px;
-  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
   white-space: normal;
 }
 
@@ -432,6 +430,44 @@ footer span {
   border-color: #9f6fff;
   outline: 0;
   box-shadow: inset 0 1px 1px rgba(54, 54, 54, 0.075), 0 0 8px rgba(253, 61, 179, 0.6);
+}
+
+.form-control {
+  position: relative;
+}
+
+.form-control label {
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+.form-control i {
+  visibility: hidden;
+  position: absolute;
+  top: 50px;
+  right: 10px;
+}
+
+.form-control.success i.fa-check-circle {
+  color: #2ecc71;
+  visibility: visible;
+}
+
+.form-control.error i.fa-exclamation-circle {
+  color: #da517a;
+  visibility: visible;
+}
+
+.form-control small {
+  color: #da517a;
+  position: absolute;
+  bottom: 0.2rem;
+  left: 0;
+  visibility: hidden;
+}
+
+.form-control.error small {
+  visibility: visible;
 }
 
 .Shopping-cart {
@@ -502,17 +538,26 @@ img {
   cursor: pointer;
 }
 
-.totalprice {
+.total {
   display: flex;
   justify-content: flex-end;
   margin-right: 10rem;
   margin-top: 1.5rem;
 }
+.total__qty {
+  margin-left: 0.5rem;
+  font-weight: bold;
+}
+.total__price {
+  margin-left: 0.5rem;
+  font-weight: bold;
+}
 
 .bouttonachat {
   background-color: #261624;
   color: white;
-  margin: 0rem 5rem 0rem 5rem;
+  white-space: nowrap;
+  margin: 2rem 5rem 2rem 5rem;
   text-transform: uppercase;
   font-weight: 700;
   border-radius: 40px;
@@ -526,6 +571,42 @@ img {
 }
 .bouttonachat:active {
   background-color: #794b76;
+}
+@media (min-width: 95rem) {
+  .bouttonachat {
+    margin-top: 0rem;
+  }
+}
+
+.Confirmation {
+  margin: 2rem;
+}
+@media (min-width: 64rem) {
+  .Confirmation {
+    margin: 6rem;
+    height: 40rem;
+  }
+}
+.Confirmation__prénom {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  font-size: 30px;
+}
+.Confirmation__nom {
+  font-weight: bold;
+  margin: 0 0 0.5rem 0.5rem;
+  font-size: 30px;
+}
+.Confirmation__img {
+  display: flex;
+  max-width: 100%;
+  max-height: 100%;
+  justify-content: center;
+  margin: auto;
+  margin-top: 5rem;
+}
+.Confirmation__Id {
+  margin-top: 2rem;
 }
 
 /*# sourceMappingURL=style.css.map */

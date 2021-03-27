@@ -3,7 +3,7 @@
     let cart = await getCart()
     displayCart(cart);
     addEventListenerToTarget(cart);
-    addListenerOnRemoveButton();       
+    addListenerOnRemoveButton();      
 })()
 
 //-----------------------------//
@@ -104,49 +104,137 @@ function displayNumberOfProductCart(cart) {
     document.getElementById("totalqty").textContent = cart.length
 }
 
-//---------------purchase button--------------//
+//---------------FORMULAIRE--------------//
 
-function purchaseOrder(){
-    document.getElementById('purchase').onclick = (e) =>{
+    const firstname = document.getElementById('firstname');
+    const lastname = document.getElementById('lastname');
+    const address = document.getElementById('adress');
+    const city = document.getElementById('city');
+    const email = document.getElementById('email');
+    let cart = getCart()
+    
+    let comfirmbutton = document.getElementById("form")
+    comfirmbutton.addEventListener("submit", function (e){
         e.preventDefault()
-        sendPurchase()
-        displayCart([])
+        alertUser()
+        if (checkCartEmpty() == true){
+            sendOrder()
+        }
+        localStorage.clear()     
+    });
+       
+//-----------Alert for User------------//
+function alertUser(){
+    const firstnameValue = firstname.value;
+    const lastnameValue = lastname.value;
+    const addressValue = address.value;
+    const cityValue = city.value;
+    const emailValue = email.value;
+
+    if(firstnameValue === '') {
+		setErrorFor(firstname, 'Name cannot be blank');
+	} else {
+		setSuccessFor(firstname);
+	}
+	
+	if(lastnameValue === '') {
+		setErrorFor(lastname, 'Email cannot be blank');
+	}  else {
+		setSuccessFor(lastname);
+	}
+	
+	if(addressValue === '') {
+		setErrorFor(address, 'Adress cannot be blank');
+	} else {
+		setSuccessFor(address);
+	}
+	
+	if(cityValue === '') {
+		setErrorFor(city, 'City cannot be blank');
+	}
+	 else{
+		setSuccessFor(city);
+	}
+
+    if(emailValue === '') {
+		setErrorFor(email, 'Email cannot be blank');
+	} else if (!isEmail(emailValue)) {
+		setErrorFor(email, 'Not a valid email');
+	} else {
+		setSuccessFor(email);
+	}
+    
+}
+
+function setErrorFor(input, message) {
+	const formControl = input.parentElement;
+	const small = formControl.querySelector('small');
+	formControl.className = 'form-control error';
+	small.innerText = message;
+}
+
+function setSuccessFor(input) {
+	const formControl = input.parentElement;
+	formControl.className = 'form-control success';
+}
+	
+function isEmail(email) {
+	return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+}
+
+ function sendOrder(){
+    const firstnameValue = firstname.value;
+    const lastnameValue = lastname.value;
+    const addressValue = address.value;
+    const cityValue = city.value;
+    const emailValue = email.value;
+    const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    if (!(
+        firstnameValue.length > 1
+        && lastnameValue.length > 1
+        && emailRegex.test(emailValue)
+        && addressValue.length > 6
+        && cityValue.length > 1
+      )) {
+        alert("Veuillez remplir tout les champs correctements")
+        return
+      }
+    //   let cart = getCart()
+      const furnitureToOrder = []
+      cart.forEach((product) => {
+        furnitureToOrder.push(product._id);
+      });
+    
+      const order = {
+        contact: {
+          firstName: firstnameValue,
+          lastName: lastnameValue,
+          address: addressValue,
+          city: cityValue,
+          email: emailValue,
+        },
+        products: furnitureToOrder,
+      }
+      let sendForm = JSON.stringify(order);
+      sendData(sendForm)
+    //   order = {}
+    //   furnitureToOrder = []
+    //   localStorage.clear()
+    
+ }
+
+
+function checkCartEmpty() {
+    if (0 == cart.length){
+    alert ("votre panier est vide");
+    return false;
+    }else{
+        return true;
     }
 }
 
 
-function sendPurchase(){
-
-    const firstname = document.getElementById('firstname').value;
-    const lastname = document.getElementById('lastname').value;
-    const address = document.getElementById('adress').value;
-    const city = document.getElementById('city').value;
-    const email = document.getElementById('email').value;
-
-    let products = getCart()
-
-    if (products.length === 0){
-        alert("votre panier est vide")
-        }else{
-            products.forEach(() => {
-                contact = {
-                    utilisateur: {
-                    firstName: firstname,
-                    lastName : lastname,
-                    address: address,
-                    city: city,
-                    email: email,
-                    } 
-                }
-            })  
-        }
-}
-
-//Ajout vérification après récup valeurs du form
-
-//Effets en fonctions de vérification
-//Envoie à l'API
-function sendData (){
+function sendData (sendForm){
     return new Promise((resolve) => {
       let request = new XMLHttpRequest();
       request.onload = function () {
@@ -154,12 +242,16 @@ function sendData (){
           this.readyState == XMLHttpRequest.DONE &&
           this.status == 201) {
           sessionStorage.setItem("order", this.responseText);
-          window.location ="./Frontend/Confirmation.html"
+          window.location ="./Confirmation.html"
           resolve(JSON.parse(this.responseText));
         } 
       };
       request.open("POST", "http://localhost:3000/api/furniture/order");
       request.setRequestHeader("Content-Type", "application/json");
-      request.send();
+      request.send(sendForm);
     });  
 };
+
+
+
+  

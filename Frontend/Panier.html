@@ -28,7 +28,6 @@
             <h1 class="Presentation__title">Découvrez les nouveautés dont vous ne pourrez plus vous passer</h1>
             <p class="Presentation__text">Orinoco est l'une des première destination pour trouver ce dont vous avez besoin. Une envie? Orinoco vous le fournira</p>
          </section> 
-      </section>
       <section class="Catégories">
          <div class="Catégories__selection"><span>all</span></div>
          <div class="Catégories__selection"><span>Orinours</span></div>
@@ -45,7 +44,7 @@
                   </div>
                   <template id="template-panier">
                      <div class="wraping-product">
-                        <div class="wraping-product__wrapimg"><img id="wrapimg" class="Imgcard"src="" alt=""></div>
+                        <div class="wraping-product__wrapimg"><img id="wrapimg" class="Imgcard" src="" alt=""></div>
                         <div class="wraping-product__name"  id="name"><span></span></div>
                         <div class="wraping-product__quantity" id="Quantity"><span></span></div>
                         <div class="wraping-product__price" id="price"><span class=""></span></div>
@@ -53,52 +52,67 @@
                      </div>
                   </template>     
                </div>
-               <div class="totalprice">
-                  <span classe="space"id="totalqty"></span>
-                  <span classe="space">Total: </span>
-                  <span classe="space"id="total">0€</span>
+               <div class="total">
+                  <div class="total__qty"><span > Quantité:</span></div>
+                  <div><span id="totalqty"></span></div>
+                  <div class="total__price"><span >Total: </span></div>
+                  <div><span id="total">0€</span></div>
                </div>
                <button class="bouttonachat" id="clearAll">
                   Videz votre panier
                   </button>
             </div>
             <div class="formulaire">
-               <form id="form" novalidate >
-                  <div class="form-group">
-                     <label for="firstname">
+               <form id="form">
+                  <div class="form-control">
+                     <label>
                      Prénom
                      </label>
-                     <input id="firstname" class="form-input"  placeholder="Votre Prénom" required />
+                     <input id="firstname" class="form-input" type="text" placeholder="Votre Prénom" />
+                     <i class="fas fa-check-circle"></i>
+                     <i class="fas fa-exclamation-circle"></i>
+                     <small>Error message</small>
                   </div>
-                  <div class="form-group">
-                      <label for="lastname">
+                  <div class="form-control">
+                      <label>
                       Nom
                       </label>
-                      <input id="lastname"  class="form-input" placeholder="Veuillez indiquer votre Nom" required />
+                      <input id="lastname" type="text" class="form-input" placeholder="Veuillez indiquer votre Nom" />
+                      <i class="fas fa-check-circle"></i>
+                      <i class="fas fa-exclamation-circle"></i>
+                      <small>Error message</small>
                   </div>
-                  <div class="form-group">
-                      <label for="email">
+                  <div class="form-control">
+                      <label>
                       Email
                       </label>
-                      <input id="email" class="form-input" type="email" placeholder="Indiquez votre Email ici" required />
+                      <input id="email" class="form-input" type="email" placeholder="Indiquez votre Email ici" />
+                      <i class="fas fa-check-circle"></i>
+                      <i class="fas fa-exclamation-circle"></i>
+                      <small>Error message</small>
                   </div>
-                  <div class="form-group">
-                     <label for="adress">
+                  <div class="form-control">
+                     <label>
                      Adresse
                      </label>
-                     <input id="adress" class="form-input"  placeholder="indiquez votre adresse ici" required />
+                     <input id="adress" class="form-input"  placeholder="indiquez votre adresse ici" />
+                     <i class="fas fa-check-circle"></i>
+                      <i class="fas fa-exclamation-circle"></i>
+                      <small>Error message</small>
                  </div>
-                  <div class="form-group">
-                     <label for="city">
+                  <div class="form-control">
+                     <label>
                      Ville
                      </label>
-                     <input id="city" class="form-input"  placeholder="Votre ville" required />
+                     <input id="city" class="form-input"  placeholder="Votre ville" />
+                     <i class="fas fa-check-circle"></i>
+                      <i class="fas fa-exclamation-circle"></i>
+                      <small>Error message</small>
                   </div>
-                  
-                  
-                  <button class="bouttonachat" id="purchase" type="submit">
+                  <button class="bouttonachat"  type="submit" >Confirmez</button>
+                  <!-- <button class="bouttonachat" id="purchase" type="submit">
                   Confirmez
-                  </button>
+                  </button> -->
               </form>
             </div>
       </section>

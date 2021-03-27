@@ -5,6 +5,8 @@
       <script src="https://kit.fontawesome.com/0915c80407.js" crossorigin="anonymous"></script>
       <title>Orinoco</title>
       <link rel= "stylesheet"  href="/Frontend/css/style.css">
+      <script src="./js/Order.js" defer ></script>
+      <script src="./js/librairie.js" defer ></script>
    </head>
    <body>
       <main class="page-container">
@@ -32,14 +34,14 @@
             <div class="Catégories__selection"><span>Oricam</span></div>
          </section>
         <div class="Confirmation">
-            <h1>Merci pour votre achat, nous avons bien reçu votre commande!</h1>
+            <span class="Confirmation__prénom" id="prenom"></span><span id="nom" class="Confirmation__nom"></span>
+            <h2>Merci pour votre achat, nous avons bien reçu votre commande!</h2>
             <span>Veuillez consulter votre messagerie pour bien obtenir la Confirmation de commande et les détails de la Livraison.</span>
-            <span>Livrer à </span>
-            <div class="Confirmation__ID"></div>
-            <div class="Confirmation__price"></div>
+            <div><span>Votre commande sera livré au </span><span class="Confirmation__adress" id="address"></span></div>
+            <span> pour un total de </span><span class="Confirmation__price"></span>
+            <div class="Confirmation__Id "><span>Commande n°</span><span id="orderId"></span></div>
+            <img class = "Confirmation__img"src="/images/undraw_web_shopping_dd4l.svg">
         </div>
-
-         </div>
          <footer>
             <h1>Orinoco</h1>
             <div class="wrap-footer">

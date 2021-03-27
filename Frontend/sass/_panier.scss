@@ -60,16 +60,26 @@ img {
     }
 
 }
-.totalprice{
+.total{
     display: flex;
     justify-content: flex-end;
     margin-right:10rem;
     margin-top: 1.5rem;
+    &__qty{
+        margin-left:0.5rem;
+        font-weight: bold;
+
+    }
+    &__price{
+        margin-left:0.5rem;
+        font-weight: bold;
+    }
 }
 .bouttonachat{
     background-color:$colour-primary;
     color:white;
-    margin: 0rem 5rem 0rem 5rem;
+    white-space: nowrap;
+    margin: 2rem 5rem 2rem 5rem;
     text-transform: uppercase;
     font-weight: 700;
     border-radius: 40px;
@@ -83,5 +93,7 @@ img {
     &:active{
        background-color: rgb(121, 75, 118);
     }
+    @media (min-width: 95rem) {
+        margin-top: 0rem;
+    }
 }
-
