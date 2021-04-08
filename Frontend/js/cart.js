@@ -1,5 +1,4 @@
-;
-(async () => {
+;(async() => {
     let cart = await getCart()
     displayCart(cart);
     addEventListenerToTarget(cart);
@@ -75,6 +74,7 @@ function removeThisProduct(id, cart) {
     
     saveCart(cart);
     displayCart(cart);
+    location.reload();
 }  
 
 
@@ -85,6 +85,7 @@ function addListenerOnRemoveButton(){
     removeButton.addEventListener("click", function ()  {  
         saveCart([]); 
         displayCart([]);
+        location.reload();
     });
 }  
 
@@ -132,13 +133,13 @@ function alertUser(){
     const emailValue = email.value;
 
     if(firstnameValue === '') {
-		setErrorFor(firstname, 'Name cannot be blank');
+		setErrorFor(firstname, 'First name cannot be blank');
 	} else {
 		setSuccessFor(firstname);
 	}
 	
 	if(lastnameValue === '') {
-		setErrorFor(lastname, 'Email cannot be blank');
+		setErrorFor(lastname, 'Name cannot be blank');
 	}  else {
 		setSuccessFor(lastname);
 	}
@@ -179,7 +180,7 @@ function setSuccessFor(input) {
 }
 	
 function isEmail(email) {
-	return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+	return /^([a-zA-Z0-9\.-_]+)[@]{1}([a-zA-Z0-9.-_]+)[.]{1}([a-z]{2,10})$/.test(email);
 }
 
  function sendOrder(){
@@ -188,7 +189,7 @@ function isEmail(email) {
     const addressValue = address.value;
     const cityValue = city.value;
     const emailValue = email.value;
-    const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    const emailRegex = /^([a-zA-Z0-9\.-_]+)[@]{1}([a-zA-Z0-9.-_]+)[.]{1}([a-z]{2,10})$/
     if (!(
         firstnameValue.length > 1
         && lastnameValue.length > 1
@@ -199,7 +200,7 @@ function isEmail(email) {
         alert("Veuillez remplir tout les champs correctements")
         return
       }
-    //   let cart = getCart()
+      
       const furnitureToOrder = []
       cart.forEach((product) => {
         furnitureToOrder.push(product._id);
@@ -217,22 +218,17 @@ function isEmail(email) {
       }
       let sendForm = JSON.stringify(order);
       sendData(sendForm)
-    //   order = {}
-    //   furnitureToOrder = []
-    //   localStorage.clear()
-    
  }
 
 
 function checkCartEmpty() {
-    if (0 == cart.length){
+    if (0 == cart.length || cart == []){
     alert ("votre panier est vide");
     return false;
     }else{
         return true;
     }
 }
-
 
 function sendData (sendForm){
     return new Promise((resolve) => {

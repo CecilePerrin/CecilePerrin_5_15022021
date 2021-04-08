@@ -1,7 +1,8 @@
-// get cart total price name and adress
+
 (async () => {
     let order = await JSON.parse(sessionStorage.getItem("order"));
-    displayInfo(order);     
+    displayInfo(order);
+    diplayTotalPrice(order)   
 })()
 
 function displayInfo(order){
@@ -9,10 +10,15 @@ function displayInfo(order){
     document.getElementById("prenom").innerHTML = order.contact.firstName;
     document.getElementById("nom").innerHTML = order.contact.lastName;
     document.getElementById("orderId").innerHTML = order.orderId;
-    document.getElementById("address").innerHTML = order.contact.address;
-    document.getElementById("city").innerHTML = order.contact.city;
-    document.getElementById("city").innerHTML = order.contact.city;
+    console.log(order.products)
     }
 }
 
+function diplayTotalPrice(order) {
+    let sum = 0;
+    order.products.forEach((products) => {
+        sum += products.price / 100;
+    })
+    document.getElementById("prixtotal").textContent = sum + " €";
+}
 

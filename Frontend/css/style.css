@@ -96,6 +96,7 @@ footer span {
 
 .btn {
   justify-content: center;
+  max-width: 10rem;
   font-size: 1rem;
   font-weight: bold;
   padding: 0.8rem;
@@ -136,22 +137,28 @@ footer span {
 }
 
 .Recherche {
-  width: 20%;
-  display: flex;
-  justify-content: flex-end;
-  margin: 1rem 0 0 5rem;
-  height: 40%;
-  background-color: #f7f7f7;
-  border-radius: 35px;
-  border: solid #cacaca 1px;
+  display: none;
 }
-.Recherche__input {
-  background-color: transparent;
-  outline: none;
-  border: none;
-}
-.Recherche__search {
-  margin: 0.4rem 0.7rem 0 0.5rem;
+@media (min-width: 64rem) {
+  .Recherche {
+    display: block;
+    width: 20%;
+    display: flex;
+    justify-content: flex-end;
+    margin: 1rem 0 0 5rem;
+    height: 40%;
+    background-color: #f7f7f7;
+    border-radius: 35px;
+    border: solid #cacaca 1px;
+  }
+  .Recherche__input {
+    background-color: transparent;
+    outline: none;
+    border: none;
+  }
+  .Recherche__search {
+    margin: 0.4rem 0.7rem 0 0.5rem;
+  }
 }
 
 .burgernav {
@@ -306,10 +313,17 @@ footer span {
 }
 
 .Product {
-  margin: 1.5rem;
-  display: flex;
+  display: block;
+  margin: 3rem;
   justify-content: center;
-  height: 750px;
+}
+@media (min-width: 64rem) {
+  .Product {
+    margin: 1.5rem;
+    display: flex;
+    justify-content: center;
+    height: 750px;
+  }
 }
 .Product__img {
   max-width: 100%;
@@ -329,6 +343,7 @@ footer span {
 
 .Validation {
   justify-content: center;
+  max-width: 10rem;
   font-size: 1rem;
   font-weight: bold;
   padding: 0.8rem;

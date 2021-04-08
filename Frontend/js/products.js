@@ -5,18 +5,17 @@ function saveCart(cart) {
 
 function getCart() {
   let cart = JSON.parse(localStorage.getItem("cart"));
-  console.log(cart)
+  console.log(cart);
   if (!cart) {
     cart = [];
     saveCart(cart);
   }
-  return cart
-  
-}
+  return cart 
+};
 
 function getId() {
   let url = new URL(window.location.href);
-  let id = url.searchParams.get('id');
+  let id = url.searchParams.get("id");
   return id;
 }
 
@@ -25,8 +24,8 @@ function  getData(id) {
     let request = new XMLHttpRequest();
     request.onreadystatechange = function () {
       if (this.readyState == XMLHttpRequest.DONE && this.status >= 200 
-      ) {
-         resolve(JSON.parse(this.responseText));
+      ){
+        resolve(JSON.parse(this.responseText));
        } 
     };
     request.open("GET", `http://localhost:3000/api/furniture/${id}`)

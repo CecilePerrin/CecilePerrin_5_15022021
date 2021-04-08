@@ -17,7 +17,7 @@ return new Promise((resolve) => {
     ) {
       resolve(JSON.parse(this.responseText));
     } else {
-      
+      console.log ('error')
     }
   };
   request.open("GET", "http://localhost:3000/api/furniture/");

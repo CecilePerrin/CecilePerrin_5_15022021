@@ -30,6 +30,7 @@
   
   @mixin btn {
     justify-content: center;
+    max-width: 10rem;
     font-size: 1rem;
     font-weight: bold;
     padding: 0.8rem;
